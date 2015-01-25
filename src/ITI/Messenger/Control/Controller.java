@@ -6,11 +6,14 @@
 package ITI.Messenger.Control;
 
 import ITI.Messenger.Control.UserData;
+import ITI.Messenger.MainMPage;
 import ITI.Messenger.SignUp;
 import ITI.Model.MessengerModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 
 /**
@@ -18,13 +21,12 @@ import java.awt.event.ActionListener;
  * @author dina
  */
 public class Controller{
-
+   MainMPage mainMPage;
     SignUp SignUpV;
-
     MessengerModel ModelV;
-
-    public Controller(SignUp V,MessengerModel M)
+    public Controller(SignUp V,MessengerModel M ,MainMPage m)
     {
+        this.mainMPage = m;
         this.SignUpV = V;
         this.ModelV = M;
     }
@@ -74,12 +76,23 @@ public class Controller{
                                     SignUpV.dispose();
                              }
                             }
-                         }
-                      
+                         }         
             }
         });
     }
+    public void showProfileAction(){
+       mainMPage.getContactProfileChooser().addChangeListener(new ChangeListener() {
 
-
-
+           public void stateChanged(ChangeEvent e) {
+              UserData userData = ModelV.retrievUserData("usename");
+              mainMPage.getEmailL().setText(userData.getUserName());
+              mainMPage.getBirtDateL().setText(userData.getBirthDate());
+              mainMPage.getFirstNameL().setText(userData.getFirstName());
+              mainMPage.getLastNameL().setText(userData.getLastName());
+              mainMPage.getGenderL().setText(userData.getGender());
+              mainMPage.getNumberL().setText(userData.getPhoneNumber());
+           }
+       });
+    
+    }
 }

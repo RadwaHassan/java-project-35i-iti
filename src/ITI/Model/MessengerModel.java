@@ -77,6 +77,7 @@ stmt.executeUpdate();
             Logger.getLogger(MessengerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
    public boolean checkPassValidOrNot (String password){
     //(?=.*[0-9]) a digit must occur at least once
     //(?=.*[a-z]) a lower case letter must occur at least once
@@ -98,13 +99,35 @@ stmt.executeUpdate();
               }
 
    }
-
-
+   
+   
+   
+   public UserData retrievUserData (String userName){
+       UserData userData = new UserData();
+        try {
+            
+            Statement myst = con.createStatement();
+            String QuerStr= "select * from users where userId ='"+ userName +"'";
+            ResultSet rs = myst.executeQuery(QuerStr);
+            while(rs.next()){
+              userData.setUserName(rs.getString(1));
+              userData.setFirstName(rs.getString(2));
+              userData.setLastName(rs.getString(3));
+              userData.setGender(rs.getString(5));
+              userData.setBirthDate(rs.getString(6));
+              userData.setPhoneNumber(rs.getString(7)); 
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MessengerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return userData;
+   }
     public boolean checkUsrExistedOrNot(String userName) {
         boolean flag = false;
         try {
             Statement stmt = con.createStatement();
-            String Querstr = "select * from users where USERID like '"+userName+"'";
+            String Querstr = "select * from users where userId like '"+userName+"'";
             ResultSet rs = stmt.executeQuery(Querstr);
             
             if (!rs.next())

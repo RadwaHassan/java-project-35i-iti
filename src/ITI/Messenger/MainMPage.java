@@ -26,7 +26,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.jdesktop.xswingx.PromptSupport;
 import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaSkyMetallicLookAndFeel;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
+
 
 /**
  *
@@ -55,6 +57,56 @@ public class MainMPage extends javax.swing.JFrame {
         UserImageL.setIcon(userIcon);
 
         StateC.setRenderer(new MyRendrer());
+    }
+
+    public JLabel getBirtDateL() {
+        return BirtDateL;
+    }
+
+    public void setBirtDateL(JLabel BirtDateL) {
+        this.BirtDateL = BirtDateL;
+    }
+
+    public JLabel getEmailL() {
+        return EmailL;
+    }
+
+    public void setEmailL(JLabel EmailL) {
+        this.EmailL = EmailL;
+    }
+
+    public JLabel getFirstNameL() {
+        return FirstNameL;
+    }
+
+    public void setFirstNameL(JLabel FirstNameL) {
+        this.FirstNameL = FirstNameL;
+    }
+
+    public JLabel getGenderL() {
+        return GenderL;
+    }
+
+    public void setGenderL(JLabel GenderL) {
+        this.GenderL = GenderL;
+    }
+
+    public JLabel getLastNameL() {
+        return LastNameL;
+    }
+
+    public void setLastNameL(JLabel LastNameL) {
+        this.LastNameL = LastNameL;
+    }
+
+    public JLabel getNumberL() {
+        return NumberL;
+    }
+
+   
+
+    public void setNumberL(JLabel NumberL) {
+        this.NumberL = NumberL;
     }
 
     /** This method is called from within the constructor to
@@ -86,7 +138,6 @@ public class MainMPage extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         BirtDateL = new javax.swing.JLabel();
         GenderL = new javax.swing.JLabel();
-        CodeL = new javax.swing.JLabel();
         NumberL = new javax.swing.JLabel();
         EditProfileB = new javax.swing.JButton();
         MenuM = new javax.swing.JMenuBar();
@@ -99,11 +150,11 @@ public class MainMPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Gisha", 1, 18));
+        jLabel1.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Team");
 
-        StateC.setFont(new java.awt.Font("Gisha", 0, 11));
+        StateC.setFont(new java.awt.Font("Gisha", 0, 11)); // NOI18N
         StateC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Available", "Busy", "Offline", "Invisible" }));
         StateC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +185,17 @@ public class MainMPage extends javax.swing.JFrame {
         );
 
         ContactProfileChooser.setBackground(new java.awt.Color(102, 0, 102));
-        ContactProfileChooser.setFont(new java.awt.Font("Gisha", 1, 14));
+        ContactProfileChooser.setFont(new java.awt.Font("Gisha", 1, 14)); // NOI18N
+        ContactProfileChooser.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentRemoved(java.awt.event.ContainerEvent evt) {
+                ContactProfileChooserComponentRemoved(evt);
+            }
+        });
+        ContactProfileChooser.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                ContactProfileChooserStateChanged(evt);
+            }
+        });
 
         SearchP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SearchP.setMaximumSize(new java.awt.Dimension(250, 250));
@@ -190,42 +251,37 @@ public class MainMPage extends javax.swing.JFrame {
         Profile.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 102)));
 
         FirstNameL.setBackground(new java.awt.Color(240, 117, 240));
-        FirstNameL.setFont(new java.awt.Font("Gisha", 1, 14));
+        FirstNameL.setFont(new java.awt.Font("Gisha", 1, 14)); // NOI18N
         FirstNameL.setForeground(new java.awt.Color(255, 255, 255));
         FirstNameL.setText("Team");
-        FirstNameL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "First name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 0, 102)));
+        FirstNameL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "First name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(102, 0, 102))); // NOI18N
 
-        LastNameL.setFont(new java.awt.Font("Gisha", 1, 14));
+        LastNameL.setFont(new java.awt.Font("Gisha", 1, 14)); // NOI18N
         LastNameL.setForeground(new java.awt.Color(255, 255, 255));
         LastNameL.setText("Team");
-        LastNameL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Last name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 0, 102)));
+        LastNameL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Last name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(102, 0, 102))); // NOI18N
 
-        EmailL.setFont(new java.awt.Font("Gisha", 1, 14));
+        EmailL.setFont(new java.awt.Font("Gisha", 1, 14)); // NOI18N
         EmailL.setForeground(new java.awt.Color(255, 255, 255));
         EmailL.setText("Team@team.com");
-        EmailL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Email", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 0, 102)));
+        EmailL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Email", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(102, 0, 102))); // NOI18N
 
-        BirtDateL.setFont(new java.awt.Font("Gisha", 1, 14));
+        BirtDateL.setFont(new java.awt.Font("Gisha", 1, 14)); // NOI18N
         BirtDateL.setForeground(new java.awt.Color(255, 255, 255));
         BirtDateL.setText("1 Feb 2015");
-        BirtDateL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Birth date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 0, 102)));
+        BirtDateL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Birth date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(102, 0, 102))); // NOI18N
 
-        GenderL.setFont(new java.awt.Font("Gisha", 1, 14));
+        GenderL.setFont(new java.awt.Font("Gisha", 1, 14)); // NOI18N
         GenderL.setForeground(new java.awt.Color(255, 255, 255));
         GenderL.setText("Both");
-        GenderL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gender", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 0, 102)));
+        GenderL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gender", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(102, 0, 102))); // NOI18N
 
-        CodeL.setFont(new java.awt.Font("Gisha", 1, 14));
-        CodeL.setForeground(new java.awt.Color(255, 255, 255));
-        CodeL.setText("02");
-        CodeL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "code", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 0, 102)));
-
-        NumberL.setFont(new java.awt.Font("Gisha", 1, 14));
+        NumberL.setFont(new java.awt.Font("Gisha", 1, 14)); // NOI18N
         NumberL.setForeground(new java.awt.Color(255, 255, 255));
         NumberL.setText("xxxxxxxx");
-        NumberL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 0, 102)));
+        NumberL.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(102, 0, 102))); // NOI18N
 
-        EditProfileB.setFont(new java.awt.Font("Gisha", 1, 14));
+        EditProfileB.setFont(new java.awt.Font("Gisha", 1, 14)); // NOI18N
         EditProfileB.setText("Edit");
         EditProfileB.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         EditProfileB.addActionListener(new java.awt.event.ActionListener() {
@@ -241,22 +297,21 @@ public class MainMPage extends javax.swing.JFrame {
             .addGroup(ProfileLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProfileLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProfileLayout.createSequentialGroup()
+                        .addComponent(EditProfileB, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProfileLayout.createSequentialGroup()
                         .addGroup(ProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(NumberL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(GenderL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                             .addComponent(BirtDateL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                             .addComponent(LastNameL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                             .addComponent(FirstNameL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EmailL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ProfileLayout.createSequentialGroup()
-                                .addComponent(CodeL, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(NumberL, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(71, 71, 71))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProfileLayout.createSequentialGroup()
-                        .addComponent(EditProfileB, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))))
+                                .addComponent(jLabel5)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(EmailL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+                        .addGap(71, 71, 71))))
         );
         ProfileLayout.setVerticalGroup(
             ProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,13 +329,13 @@ public class MainMPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GenderL, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CodeL, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NumberL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(NumberL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(EditProfileB)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        FirstNameL.getAccessibleContext().setAccessibleDescription("");
 
         ContactProfileChooser.addTab("Profile", Profile);
 
@@ -288,7 +343,7 @@ public class MainMPage extends javax.swing.JFrame {
         FileChooserP.setLayout(FileChooserPLayout);
         FileChooserPLayout.setHorizontalGroup(
             FileChooserPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 335, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(FileChooserPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(FileChooserPLayout.createSequentialGroup()
                     .addComponent(ContactProfileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -342,7 +397,7 @@ public class MainMPage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DataP, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+            .addComponent(DataP, javax.swing.GroupLayout.PREFERRED_SIZE, 327, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,6 +427,18 @@ public class MainMPage extends javax.swing.JFrame {
         System.out.println("kdfsg");
     }//GEN-LAST:event_FriendLValueChanged
 
+    public JTabbedPane getContactProfileChooser() {
+        return ContactProfileChooser;
+    }
+
+    private void ContactProfileChooserComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_ContactProfileChooserComponentRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContactProfileChooserComponentRemoved
+
+    private void ContactProfileChooserStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ContactProfileChooserStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContactProfileChooserStateChanged
+
     // * @param args the command line arguments
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -385,7 +452,6 @@ public class MainMPage extends javax.swing.JFrame {
     private javax.swing.JMenu ActionM;
     private javax.swing.JLabel AddFriendL;
     private javax.swing.JLabel BirtDateL;
-    private javax.swing.JLabel CodeL;
     private javax.swing.JTabbedPane ContactProfileChooser;
     private javax.swing.JMenu ContactsM;
     private javax.swing.JPanel DataP;
@@ -413,7 +479,6 @@ public class MainMPage extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }
-
 class MyRendrer implements ListCellRenderer {
 
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
